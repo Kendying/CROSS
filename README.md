@@ -51,7 +51,7 @@ The system bridges **administrators** and **scholars** by providing digital tool
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap / TailwindCSS  
+- **Frontend**: HTML, CSS3/ React.JS / TailwindCSS (depending on final implementation)
 - **Backend**: ASP.NET / PHP / Django (depending on final implementation)  
 - **Database**: MySQL / SQL Server  
 - **Other Tools**: XAMPP, Visual Studio Code, GitHub
