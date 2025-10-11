@@ -1,59 +1,73 @@
-## CROSS: Care, Renewal, Outreach, Support & Sustainability
-### An Integrated Web Platform for Servus Amoris Foundation’s Programs and Scholarships
+# React + TypeScript + Vite
 
----
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 📖 Project Description
-**CROSS** is an integrated web-based platform designed for the **Servus Amoris Foundation** to streamline the management of programs, scholarships, and scholar engagement.
+Currently, two official plugins are available:
 
-The system bridges **administrators** and **scholars** by providing digital tools for event management, attendance tracking, certificate generation, and centralized communication. It aims to enhance efficiency, transparency, and accessibility in handling foundation programs.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
----
+## React Compiler
 
-## 🎯 Objectives
-- Provide a **centralized platform** for scholars and administrators.
-- Digitize the **seminar, attendance, and certification process**.
-- Improve **engagement and communication** between the foundation and scholars.
-- Ensure **sustainability** through a scalable and mobile-friendly design.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
----
+## Expanding the ESLint configuration
 
-## 👩‍🎓 Scholar Features
-- **Dashboard**: Personalized welcome banner, profile overview, scholar status.  
-- **Seminars**: Browse available seminars with RSVP functionality.  
-- **Attendance History**: Track past events, attendance records, and download reports (PDF).  
-- **Certificates**: Auto-generated certificates with download option.  
-- **Announcements**: Real-time updates and notifications.  
-- **Feedback System**: Rate and comment on seminars, provide suggestions.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-✨ *Additional Enhancements:*  
-- Gamification badges and scholar leaderboard.  
-- Mobile-friendly responsive interface.  
-- Private scholar journal/notes for seminars.
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
----
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-## 👨‍💼 Admin Features
-- **Admin Dashboard**: Overview cards (total scholars, events, attendance), analytics charts.  
-- **Seminar Management**: Add/Edit/Delete seminars, assign speakers, track RSVPs.  
-- **Attendance Analytics**: Export reports (Excel/PDF), filter by seminar/date.  
-- **User Management**: Approve registrations, reset passwords, assign admin roles.  
-- **Announcements**: Post and schedule announcements with file attachments.  
-- **Audit Logs**: Track system activities for accountability.
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-✨ *Additional Enhancements:*  
-- Automated certificate generator with digital signatures & logo.  
-- Bulk notifications (Email/SMS).  
-- Custom report builder.  
-- Calendar-based event scheduling.  
-- Role-based access for multi-level administrators.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
----
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## 🛠️ Tech Stack
-- **Frontend**: HTML, CSS3/ React.JS / TailwindCSS (depending on final implementation)
-- **Backend**: ASP.NET / PHP / Django (depending on final implementation)  
-- **Database**: MySQL / SQL Server  
-- **Other Tools**: XAMPP, Visual Studio Code, GitHub
-
----
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
